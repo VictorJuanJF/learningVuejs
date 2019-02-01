@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vuejs2</title>
+    <!-- development version, includes helpful console warnings -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="components/computedProperties.js"></script>
+    <script src="components/vmodel.js"></script>
+    <script src="components/message.js"></script>
+    <script src="components/methods.js"></script>
+    <script src="components/vmodel-checkboxes.js"></script>
+    <script src="components/emit.js"></script>
+    <script src="components/parentData.js"></script>
+    <script src="components/child.js"></script>
+    <script src="components/child-method.js"></script>
+    <script src="components/login-form.js"></script>
+    <script src="components/loops.js"></script>
+    <script src="components/slots.js"></script>
+    <script src="components/watchers.js"></script>
+    <script src="components/getset.js"></script>
+    <script src="components/dynamicComponents/cmp1.js"></script>
+    <script src="components/dynamicComponents/cmp2.js"></script>
+    <script src="components/dynamicComponents/cmp3.js"></script>
+    <script src="components/load-dynamic-components.js"></script>
+    <script src="components/mixins.js"></script>
+
+</head>
+
+<body>
+
+
+    <div id="app">
+
+
+        <load-dynamic-components></load-dynamic-components>
+        <vmodel-checkboxes></vmodel-checkboxes>
+        <methods></methods>
+        <vmodel></vmodel>
+        <computed-properties></computed-properties>
+        <emit @show-car-name="showCarBrandFromEmitEmpCmp"></emit>
+        <parent-data></parent-data>
+        <child-data ref="childData"></child-data>
+        <child-methods ref="childMethod"></child-methods>
+        <login-form></login-form>
+        <loops></loops>
+        <slots>
+            <p>ejemplo dentro de slot sin nombre</p>
+            <template slot="header">
+                <h3>Header del layout con slots</h3>
+            </template>
+
+        </slots>
+        <watchers></watchers>
+        <getset></getset>
+        <mixin></mixin>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            mounted() {
+                const cmpName = this.$refs.childData.cmpName;
+                let refs = this.$refs;
+                console.log(cmpName);
+                this.$refs.childMethod.showcCmpName();
+            },
+            data() {
+                return {
+                    appName: 'Iniciando con vuejs'
+                }
+            },
+            methods: {
+                showCarBrandFromEmitEmpCmp(carName) {
+                    alert(carName);
+                }
+            },
+        })
+    </script>
+
+</body>
+
+</html>
